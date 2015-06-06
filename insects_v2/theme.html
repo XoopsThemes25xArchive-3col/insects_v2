@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<{assign var=theme_name value=$xoTheme->folderName}>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<{$xoops_module_header}>
+</head>
+
+<body>
+<div id="container">
+
+<div id="header">
+  <div class="title"><a href="<{$xoops_url}>/">OCEA-NET Official Site</a></div>
+  <div class="navigation">
+  <a href="<{$xoops_url}>/">Home</a>&nbsp;|&nbsp;
+  <a href="<{$xoops_url}>/modules/sitemap/">Sitemap</a>&nbsp;|&nbsp;
+  <a href="<{$xoops_url}>/modules/inquirysp/">Contact</a>
+  </div>
+</div>
+
+<{if $xoops_dirname == "" }>
+<div class="mid_column"><a href="<{$xoops_url}>/modules/news/"><img src="<{$xoops_imageurl}>block1.jpg" /></a><a href="<{$xoops_url}>/modules/blog/"><img src="<{$xoops_imageurl}>block2.jpg" /></a><a href="<{$xoops_url}>/modules/wfdownloads/"><img src="<{$xoops_imageurl}>block3.jpg" /></a><a href="<{$xoops_url}>/modules/myalbum/"><img src="<{$xoops_imageurl}>block4.jpg" /></a></div>
+<{/if}>
+
+<div id="block_btm">
+  <div class="blocks" style="border-right: 1px solid #989898;">
+  <a href="<{$xoops_url}>/modules/news/">SiteNews</a> <br />
+  <span class="desc">NEWS</span>
+  </div>
+  
+  <div class="blocks" style="border-right: 1px solid #989898;">
+  <a href="<{$xoops_url}>/modules/blog/">Enjoy My Blog </a><br />
+  <span class="desc">BLOG</span>
+  </div>
+
+  <div class="blocks" style="border-right: 1px solid #989898;">
+  <a href="<{$xoops_url}>/modules/wfdownloads/">Download Theme</span></a><br />
+  <span class="desc">DOWNLOADS</span>
+  </div>
+
+  <div class="blocks">
+  <a href="<{$xoops_url}>/modules/myalbum/">Illust Gallery</a><br />
+  <span class="desc">PHOTOS</span>
+  </div>
+</div>
+
+<div id="main_content">
+<table cellspacing="0">
+<tr>
+
+<!-- Start left blocks loop -->
+        <{if $xoops_showlblock}>
+            <td id="leftcolumn">
+            <{foreach item=block from=$xoBlocks.canvas_left}>
+                <{includeq file="$theme_name/theme_blockleft.html"}>
+            <{/foreach}>
+            </td>
+        <{/if}>
+        <!-- End left blocks loop -->
+
+        <td id="centercolumn">
+
+        <!-- Display center blocks if any -->
+        <{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+            <table cellspacing="0">
+            <tr>
+                <td id="centerCcolumn" colspan="2">
+                <!-- Start center-center blocks loop -->
+                <{foreach item=block from=$xoBlocks.page_topcenter}>
+                    <{includeq file="$theme_name/theme_blockcenter_c.html"}>
+                <{/foreach}>
+                <!-- End center-center blocks loop -->
+                </td>
+            </tr>
+            <tr>
+                <td id="centerLcolumn">
+                <!-- Start center-left blocks loop -->
+                <{foreach item=block from=$xoBlocks.page_topleft}>
+                    <{includeq file="$theme_name/theme_blockcenter_l.html"}>
+                <{/foreach}>
+                <!-- End center-left blocks loop -->
+                </td>
+                <td id="centerRcolumn">
+                <!-- Start center-right blocks loop -->
+                <{foreach item=block from=$xoBlocks.page_topright}>
+                    <{includeq file="$theme_name/theme_blockcenter_r.html"}>
+                <{/foreach}>
+                <!-- End center-right blocks loop -->
+                </td>
+            </tr>
+            </table>
+        <{/if}>
+        <!-- End display center blocks -->
+
+        <div id="content">
+          <{$xoops_contents}>
+        </div>
+
+        <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright or $xoBlocks.page_bottomcenter}>
+        <table cellspacing="0">
+            <{if $xoBlocks.page_bottomcenter}>
+                <tr>
+                    <td id="bottomCcolumn" colspan="2">
+                        <{foreach from=$xoBlocks.page_bottomcenter item=block}>
+                            <{include file="$theme_name/theme_blockcenter_c.html"}>
+                        <{/foreach}>
+                    </td>
+                </tr>
+                <{/if}>
+                <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+                <tr>
+                    <td id="bottomLcolumn">
+                        <{foreach from=$xoBlocks.page_bottomleft item=block}>
+                            <{include file="$theme_name/theme_blockcenter_l.html"}>
+                        <{/foreach}>
+                    </td>
+                    <td id="bottomRcolumn">
+                        <{foreach from=$xoBlocks.page_bottomright item=block}>
+                            <{include file="$theme_name/theme_blockcenter_r.html"}>
+                        <{/foreach}>
+                    </td>
+                </tr>
+            <{/if}>
+        </table>
+        <{/if}>        
+        
+      </td>
+
+    <{if $xoops_showrblock}>
+        <td id="rightcolumn">
+        <!-- Start right blocks loop -->
+        <{foreach item=block from=$xoBlocks.canvas_right}>
+            <{includeq file="$theme_name/theme_blockright.html"}>
+        <{/foreach}>
+        <!-- End right blocks loop -->
+        </td>
+    <{/if}>
+
+</tr>
+</table>
+</div>
+
+<div class="footer"><img src="<{$xoops_imageurl}>btm.gif" alt="footer" /></div>
+
+<div id="footer"><{$xoops_footer}></div>
+</div>
+
+</div>
+</body>
+</html>
